@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alysa Portfolio — Home</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<style>
+/* ======================
+   THEME SYSTEM
+====================== */
+:root {
+  --bg:#0f172a;
+  --card:#1e293b;
+  --text:#e5e7eb;
+  --accent:linear-gradient(135deg,#6366f1,#22d3ee);
+}
+
+body.light {
+  --bg:#f1f5f9;
+  --card:#ffffff;
+  --text:#0f172a;
+}
+
+*{box-sizing:border-box;margin:0;padding:0;font-family:Inter,sans-serif}
+body{background:var(--bg);color:var(--text);transition:.3s}
+
+/* ======================
+   NAVIGATION
+====================== */
+nav{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:15px 30px;
+  background:rgba(0,0,0,.2);
+  backdrop-filter:blur(8px);
+}
+
+nav a{
+  color:var(--text);
+  margin-right:15px;
+  text-decoration:none;
+}
+
+.toggle{
+  cursor:pointer;
+  padding:8px 14px;
+  border-radius:10px;
+  background:var(--accent);
+  color:white;
+  border:none;
+}
+
+header{
+  text-align:center;
+  padding:60px 20px 40px;
+}
+
+.profile{
+  width:140px;height:140px;border-radius:50%;
+  background:#334155;margin:20px auto;
+  display:flex;align-items:center;justify-content:center;
+  font-size:14px;color:#94a3b8;
+}
+
+.container{max-width:1200px;margin:auto;padding:20px}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+  gap:25px;
+}
+
+.card{
+  background:var(--card);
+  padding:25px;
+  border-radius:18px;
+  box-shadow:0 10px 30px rgba(0,0,0,.25);
+  transition:.3s;
+}
+
+.card:hover{
+  transform:translateY(-6px);
+  box-shadow:0 15px 40px rgba(99,102,241,.35);
+}
+
+.card h3{margin-bottom:10px}
+
+button.action{
+  margin-top:15px;
+  padding:10px 14px;
+  border:none;
+  border-radius:12px;
+  background:var(--accent);
+  color:white;
+  cursor:pointer;
+}
+
+.map{height:220px;margin-top:10px;border-radius:12px;display:none}
+
+/* ======================
+   FLOATING CONTACT
+====================== */
+.float-contact{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+
+.float-btn{
+  padding:12px 16px;
+  border-radius:14px;
+  background:var(--accent);
+  color:white;
+  border:none;
+  cursor:pointer;
+  box-shadow:0 8px 20px rgba(0,0,0,.3);
+}
+
+/* ======================
+   FOOTER
+====================== */
+footer{
+  margin-top:60px;
+  background:#020617;
+  color:#cbd5f5;
+  padding:30px;
+  display:flex;
+  justify-content:space-between;
+  flex-wrap:wrap;
+}
+
+.footer-left{
+  max-width:400px;
+}
+
+.footer-right{
+  display:flex;
+  gap:10px;
+}
+
+.social-btn{
+  width:40px;height:40px;
+  border-radius:50%;
+  background:#334155;
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;
+  transition:.3s;
+}
+
+.social-btn:hover{box-shadow:0 0 15px #22d3ee}
+
+@media(max-width:700px){
+  footer{flex-direction:column;gap:20px}
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAV -->
+<nav>
+<div>
+<a href="index.html">Home</a>
+<a href="about.html">About</a>
+<a href="skills.html">Skills</a>
+</div>
+<button class="toggle" onclick="toggleTheme()">Light / Dark</button>
+</nav>
+
+<!-- HOME HEADER -->
+<header>
+<h1>Alysa Mae Galvo</h1>
+<p>IT Student • System Development & UI Exploration</p>
+<div class="profile">Photo</div>
+
+<button class="action" onclick="scheduleCall()">Schedule a Call</button>
+<button class="action" onclick="sendEmail()">Send Email</button>
+</header>
+
+<!-- HOME CARDS -->
+<div class="container">
+<div class="grid">
+
+<div class="card">
+<h3>About Me</h3>
+<p>Editable intro summary. Click About page for full details.</p>
+<button class="action" onclick="go('about.html')">Open About</button>
+</div>
+
+<div class="card">
+<h3>Education</h3>
+<p>Previous schools with interactive map.</p>
+<button class="action" onclick="toggleMap()">Show Map</button>
+<div id="map" class="map"></div>
+</div>
+
+<div class="card">
+<h3>Tech Stack</h3>
+<p>Frontend: HTML, CSS, JavaScript
+Backend: PHP, NodeJS, MySQL, Python</p>
+<button class="action" onclick="go('skills.html')">View Stack</button>
+</div>
+
+<div class="card">
+<h3>Certifications</h3>
+<p>Editable achievements placeholder.</p>
+</div>
+
+<div class="card">
+<h3>Projects</h3>
+<p>Showcase your student projects here.</p>
+</div>
+
+</div>
+</div>
+
+<!-- FLOATING CONTACT -->
+<div class="float-contact">
+<button class="float-btn" onclick="chat()">Chat with Alysa</button>
+<button class="float-btn" onclick="contactForm()">Contact Me</button>
+</div>
+
+<!-- FOOTER -->
+<footer>
+<div class="footer-left">
+<h4>Contact Info</h4>
+<p>Email: your@email.com</p>
+<p>Phone: +63 XXX XXX</p>
+
+<h4>Quick Links</h4>
+<p>Technologies • Social • Portfolio</p>
+
+<p>© Portfolio Template</p>
+</div>
+
+<div class="footer-right">
+<div class="social-btn">F</div>
+<div class="social-btn">L</div>
+<div class="social-btn">G</div>
+<div class="social-btn">I</div>
+<div class="social-btn">X</div>
+<div class="social-btn">Y</div>
+</div>
+</footer>
+
+<script>
+/* THEME */
+function toggleTheme(){
+  document.body.classList.toggle("light");
+}
+
+/* NAV */
+function go(page){window.location.href=page}
+
+/* MAP */
+let mapLoaded=false;
+function toggleMap(){
+  const m=document.getElementById("map");
+  m.style.display=m.style.display==="block"?"none":"block";
+  if(!mapLoaded){
+    const map=L.map('map').setView([14.5995,120.9842],13);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+    L.marker([14.5995,120.9842]).addTo(map).bindPopup("School Location");
+    mapLoaded=true;
+  }
+}
+
+/* ACTIONS */
+function scheduleCall(){alert("Scheduling placeholder — connect calendar later.")}
+function sendEmail(){window.location.href="mailto:your@email.com"}
+function chat(){alert("Floating chat placeholder.")}
+function contactForm(){alert("Contact form placeholder.")}
+</script>
+
+</body>
+</html>
