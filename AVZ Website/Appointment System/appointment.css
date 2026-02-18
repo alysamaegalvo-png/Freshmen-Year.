@@ -1,0 +1,105 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    
+}
+
+body {
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    background: linear-gradient(135deg, #71b7e6, #9b59b6);
+    
+}
+
+.container {
+    max-width: 700px;
+    width: 100%;
+    background: #fff;
+    padding: 25px 30px;
+    border-radius: 5px;
+}
+
+.container .title {
+    font-size: 25px;
+    font-weight: 500;
+    position: relative;
+}
+
+.container .title::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 3px;
+    width: 30px;
+    background: linear-gradient(135deg, #71b7e6, #9b59b6);
+}
+
+.container form .user-details{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+form .user-details .input-box{
+    margin: 20px 0 12px 0 ;
+    width: calc(100% / 2 - 20px);
+}
+
+.user-details .input-box .details{
+font-weight: 500;
+margin-bottom: 5px;
+}
+
+
+.user-details .input-box input{
+    height: 45px;
+    width: 100%;
+}
+
+
+.input-box input,
+.input-box textarea {
+    width: 100%; 
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-top: 5px;
+    outline: none;
+    resize: none; 
+}
+
+
+.comment-box {
+    height: 200px; 
+    resize: vertical; 
+    font-size: 16px; 
+}
+
+form .button {
+    height: 45px;
+    width: 45px 0;
+}
+
+form .button input{
+    height: 100%;
+    width: 100%;
+    border-radius: 20px;
+    outline: none;
+    color: #fff;
+    border: none;
+    background: linear-gradient(135deg, #71b7e6, #9b59b6);
+}
+
+
+
+
+
+
+
